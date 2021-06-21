@@ -1,16 +1,20 @@
 package com.money.api.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
 @Table(name = "category")
-public class Category implements Serializable {
+public class Category {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long code;
+
+  @NotNull
+  @Size(min = 3, max = 20)
   private String name;
 
   public Long getCode() {
