@@ -1,9 +1,11 @@
 package com.money.api.model;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Address {
+public class Address implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   private String longboat;
   private String number;
@@ -11,20 +13,7 @@ public class Address {
   private String neighborhood;
   private String zipCode;
   private String city;
-  private String estate;
-
-  public Address() {
-  }
-
-  public Address(String longboat, String number, String complement, String neighborhood, String zipCode, String city, String estate) {
-    this.longboat = longboat;
-    this.number = number;
-    this.complement = complement;
-    this.neighborhood = neighborhood;
-    this.zipCode = zipCode;
-    this.city = city;
-    this.estate = estate;
-  }
+  private String state;
 
   public String getLongboat() {
     return longboat;
@@ -74,12 +63,11 @@ public class Address {
     this.city = city;
   }
 
-  public String getEstate() {
-    return estate;
+  public String getState() {
+    return state;
   }
 
-  public void setEstate(String estate) {
-    this.estate = estate;
+  public void setState(String state) {
+    this.state = state;
   }
-
 }
