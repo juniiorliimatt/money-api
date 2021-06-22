@@ -4,10 +4,8 @@ import com.money.api.event.CreatedEventResource;
 import com.money.api.model.Person;
 import com.money.api.repository.PersonRepository;
 import com.money.api.service.PersonService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,11 +54,15 @@ public class PersonResource {
   @Transactional
   @PutMapping("/{code}")
   public ResponseEntity<Person> update(@PathVariable Long code, @Valid @RequestBody Person person) {
-    Optional<Person> fromBD = service.update(code, person);
-    if(fromBD.isEmpty()){
-      throw new EmptyResultDataAccessException(1);
-    }
-    return ResponseEntity.ok(fromBD.get());
+    Person fromBD = service.update(code, person);
+    return ResponseEntity.ok(fromBD);
+  }
+
+  @Transactional
+  @PutMapping("/{code}/active")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void updatePropertieActive(@PathVariable Long code, @RequestBody Boolean active) {
+    service.updatePropertieActive(code, active);
   }
 
   @Transactional
