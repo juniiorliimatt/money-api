@@ -1,0 +1,26 @@
+stages:
+  - test
+  - build
+  - deploy
+
+maven-test:
+  image: maven:3-jdk-11
+  stage: test
+  script:
+    - mvn test -B
+
+maven-build:
+  image: maven:3-jdk-11
+  stage: build
+  script:
+    - mvn package
+
+deploy:
+  image: ruby:latest
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  only:
+    - main
