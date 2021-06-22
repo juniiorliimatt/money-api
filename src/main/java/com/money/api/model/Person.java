@@ -3,15 +3,16 @@ package com.money.api.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "person")
-public class Person {
+public class Person implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long code;
 
   @NotNull
   @Size(min = 3, max = 255)
@@ -21,24 +22,15 @@ public class Person {
   private Address address;
 
   @NotNull
+  @Column(name = "is_active")
   private Boolean isActive;
 
-  public Person() {
+  public Long getCode() {
+    return code;
   }
 
-  public Person(Long id, String name, Address address, Boolean isActive) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-    this.isActive = isActive;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
+  public void setCode(Long code) {
+    this.code = code;
   }
 
   public String getName() {
@@ -61,20 +53,20 @@ public class Person {
     return isActive;
   }
 
-  public void setActive(Boolean active) {
-    isActive = active;
+  public void setActive(Boolean isActive) {
+    this.isActive = isActive;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Person person = (Person) o;
-    return getId().equals(person.getId());
+    var person = (Person) o;
+    return getCode().equals(person.getCode());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getId());
+    return Objects.hash(getCode());
   }
 }
