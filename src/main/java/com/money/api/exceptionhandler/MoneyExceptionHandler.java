@@ -39,7 +39,7 @@ public class MoneyExceptionHandler extends ResponseEntityExceptionHandler {
   @Override
   protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
     var messageUser = message.getMessage("invalid.message", null, LocaleContextHolder.getLocale());
-    var messageDev = ex.getCause().toString();
+    var messageDev = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
     List<Erro> erros = Collections.singletonList(new Erro(messageUser, messageDev));
     return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
   }
