@@ -1,5 +1,7 @@
 package com.money.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,6 +26,12 @@ public class Person implements Serializable {
   @NotNull
   @Column(name = "is_active")
   private Boolean isActive;
+
+  @JsonIgnore
+  @Transient
+  public boolean isInativo() {
+    return !this.isActive;
+  }
 
   public Long getCode() {
     return code;
