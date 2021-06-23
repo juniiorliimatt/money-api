@@ -21,14 +21,4 @@ INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,s
 INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Carlos Santana', 'Rua da Manga', '433', null, 'Centro', '31.400-12', 'Belo Horizonte', 'MG', true);
 INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Leonardo Oliveira', 'Rua do Músico', '566', null, 'Segismundo Pereira', '38.400-00', 'Uberlândia', 'MG', true);
 INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Isabela Martins', 'Rua da Terra', '1233', 'Apto 10', 'Vigilato', '99.400-12', 'Manaus', 'AM', true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Junior','Av.B','624','Condomínio Morada dos Buquês','Jereissate III','61.814-901','Pacatuba','Ceará',false);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Damyres','Av.B','624','Condomínio Morada dos Buquês','Jereissate III','61.814-901','Pacatuba','Ceará',false);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Nadir','Av.B','311','Edilson Candéa','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Gleyciane','Av.B','311','Edilson Candéa','Jereissate III','61.814-901','Pacatuba','Ceará',false);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Miguel','Av.B','624','Condomínio Morada dos Buquês','Jereissate III','61.814-901','Pacatuba','Ceará',false);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Dayrles','Av.B','666','Rua 71','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Zigueira','Av.B','777','Na PQP','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Yuk','Av.B','777','Na PQP','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Ale','Av.B','777','Na PQP','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Maravilha','Av.B','777','Na PQP','Jereissate III','61.814-901','Pacatuba','Ceará',true);
-INSERT INTO person (name,longboat,number,complement,neighborhood,zip_code,city,state,is_active) values ('Anarquia','Av.B','777','Na PQP','Jereissate III','61.814-901','Pacatuba','Ceará',true);
+
