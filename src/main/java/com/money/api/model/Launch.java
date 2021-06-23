@@ -1,6 +1,7 @@
 package com.money.api.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,26 +15,32 @@ public class Launch implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long code;
 
+  @NotNull
   private String description;
 
+  @NotNull
   @Column(name = "due_date")
   private LocalDate dueDate;
 
   @Column(name = "payment_date")
   private LocalDate paymentDate;
 
+  @NotNull
   @Column(name = "value_launch")
   private BigDecimal valueLaunch;
 
   private String observation;
 
+  @NotNull
   @Enumerated(EnumType.STRING)
   private LaunchType type;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "code_category")
   private Category category;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "code_person")
   private Person person;
