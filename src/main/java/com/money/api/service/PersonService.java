@@ -28,7 +28,7 @@ public class PersonService implements Serializable {
     repository.save(person);
   }
 
-  private Person getPersonByCode(Long code) {
+  public Person getPersonByCode(Long code) {
     Optional<Person> personFromBD = repository.findById(code);
     if (personFromBD.isEmpty()) {
       throw new EmptyResultDataAccessException(1);
