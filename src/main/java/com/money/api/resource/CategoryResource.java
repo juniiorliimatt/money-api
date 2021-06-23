@@ -38,6 +38,7 @@ public class CategoryResource {
     return fromBd.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(fromBd);
   }
 
+  @Transactional
   @PostMapping
   public ResponseEntity<Category> save(@Valid @RequestBody Category category, HttpServletResponse response) {
     var saved = repository.save(category);
