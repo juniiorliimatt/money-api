@@ -12,12 +12,13 @@ import java.util.Optional;
 
 @Service
 public class PersonService implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   @Autowired
   private PersonRepository repository;
 
   public Person update(Long code, Person person) {
-    Person personFromBD = getPersonByCode(code);
+    var personFromBD = getPersonByCode(code);
     BeanUtils.copyProperties(person, personFromBD, "code");
     return repository.save(person);
   }
