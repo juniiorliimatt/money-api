@@ -44,15 +44,18 @@ public class LaunchRepositoryQueryImpl implements LaunchRepositoryQuery {
     List<Predicate> predicates = new ArrayList<>();
 
     if (!StringUtils.isEmpty(filter.getDescription())) {
-      predicates.add(builder.like(builder.lower(root.get(Launch_.description)), "%" + filter.getDescription().toLowerCase() + "%"));
+      predicates.add(builder.like(builder.lower(root.get(Launch_.description)),
+        "%" + filter.getDescription().toLowerCase() + "%"));
     }
 
     if (filter.getDueDateIn() != null) {
-      predicates.add(builder.greaterThanOrEqualTo(root.get(Launch_.dueDate), filter.getDueDateIn()));
+      predicates.add(builder.greaterThanOrEqualTo(root.get(Launch_.dueDate),
+        filter.getDueDateIn()));
     }
 
     if (filter.getDueDateUntil() != null) {
-      predicates.add(builder.lessThanOrEqualTo(root.get(Launch_.dueDate), filter.getDueDateUntil()));
+      predicates.add(builder.lessThanOrEqualTo(root.get(Launch_.dueDate),
+        filter.getDueDateUntil()));
     }
 
     return predicates.toArray(new Predicate[predicates.size()]);
