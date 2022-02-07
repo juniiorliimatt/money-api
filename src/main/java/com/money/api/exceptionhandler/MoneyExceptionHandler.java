@@ -23,47 +23,53 @@ import java.util.Collections;
 import java.util.List;
 
 @ControllerAdvice
-public class MoneyExceptionHandler extends ResponseEntityExceptionHandler {
-
+public class MoneyExceptionHandler extends ResponseEntityExceptionHandler{
+  
   @Autowired
   private MessageSource message;
-
+  
   @Override
-  protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-    var messageUser = message.getMessage("invalid.message", null, LocaleContextHolder.getLocale());
-    var messageDev = ex.getCause() != null ? ex.getCause().toString() : ExceptionUtils.getRootCauseMessage(ex);
-    List<Erro> erros = Collections.singletonList(new Erro(messageUser, messageDev));
-    return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
+  protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+                                                                HttpHeaders headers,HttpStatus status,
+                                                                WebRequest request){
+    var messageUser=message.getMessage("invalid.message",null,LocaleContextHolder.getLocale());
+    var messageDev=ex.getCause()!=null?ex.getCause().toString():ExceptionUtils.getRootCauseMessage(ex);
+    List<Erro> erros=Collections.singletonList(new Erro(messageUser,messageDev));
+    return handleExceptionInternal(ex,erros,headers,HttpStatus.BAD_REQUEST,request);
   }
-
+  
   @Override
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-    List<Erro> erros = createListOfErros(ex.getBindingResult());
-    return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                HttpHeaders headers,HttpStatus status,
+                                                                WebRequest request){
+    List<Erro> erros=createListOfErros(ex.getBindingResult());
+    return handleExceptionInternal(ex,erros,headers,HttpStatus.BAD_REQUEST,request);
   }
-
+  
   @ExceptionHandler({EmptyResultDataAccessException.class})
-  public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
-    var messageUser = message.getMessage("resource.not-found", null, LocaleContextHolder.getLocale());
-    var messageDev = ex.toString();
-    List<Erro> erros = Collections.singletonList(new Erro(messageUser, messageDev));
-    return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+  public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
+                                                                     WebRequest request){
+    var messageUser=message.getMessage("resource.not-found",null,LocaleContextHolder.getLocale());
+    var messageDev=ex.toString();
+    List<Erro> erros=Collections.singletonList(new Erro(messageUser,messageDev));
+    return handleExceptionInternal(ex,erros,new HttpHeaders(),HttpStatus.NOT_FOUND,request);
   }
-
+  
   @ExceptionHandler({DataIntegrityViolationException.class})
-  public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
-    var messageUser = message.getMessage("resource.operation-not-permitted", null, LocaleContextHolder.getLocale());
-    var messageDev = ExceptionUtils.getRootCauseMessage(ex);
-    List<Erro> erros = Collections.singletonList(new Erro(messageUser, messageDev));
-    return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+  public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex,
+                                                                      WebRequest request){
+    var messageUser=message.getMessage("resource.operation-not-permitted",null,LocaleContextHolder.getLocale());
+    var messageDev=ExceptionUtils.getRootCauseMessage(ex);
+    List<Erro> erros=Collections.singletonList(new Erro(messageUser,messageDev));
+    return handleExceptionInternal(ex,erros,new HttpHeaders(),HttpStatus.BAD_REQUEST,request);
   }
-
-  private List<Erro> createListOfErros(BindingResult result) {
-    List<Erro> errors = new ArrayList<>();
-    for (FieldError fe : result.getFieldErrors()) {
-      var messageUser = message.getMessage(fe, LocaleContextHolder.getLocale());
-      var messageDev = fe.toString();
-      errors.add(new Erro(messageUser, messageDev));
+  
+  private List<Erro> createListOfErros(BindingResult result){
+    List<Erro> errors=new ArrayList<>();
+    for(FieldError fe: result.getFieldErrors()){
+      var messageUser=message.getMessage(fe,LocaleContextHolder.getLocale());
+      var messageDev=fe.toString();
+      errors.add(new Erro(messageUser,messageDev));
     }
     return errors;
   }
